@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="test-id">
+    <h1>Кликни по мне click OR dblclick</h1>
+    <div class="test-class">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem tempora, veniam?</p>
+        <p>Beatae, perspiciatis totam. Dolores eveniet iusto molestias repudiandae saepe.</p>
+    </div>
+    <div class="test-class">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, laborum.</p>
+    </div>
+    <button class="btn1" data-info = "15"> Это просто кнопка</button>
+</div>
+<script>
+    /*******************************************************************************************/
+    /**************************************Доступ к элементу, способы:**************************/
+    //Доступ по id - самый быстрый способ
+    let elem = document.getElementById('test-id');
+    //console.log(elem);
+    /************************************************************************************************/
+    //Доступ по имени класса, но в таком случае метод возвращает коллекцию объектов с данным именем класса
+    //доступен к перечислению циклом for of
+    let elemClass = document.getElementsByClassName('test-class');
+    //console.log(elemClass);
+    //т.к. getElementsByClassName возвращает коллекцию, то с ней можно работать как с массивом
+    let elemClass1 = document.getElementsByClassName('test-class')[0];
+    //console.log(elemClass1);
+    /************************************************************************************************/
+    //можно искать по имени тега. Метод тоже возвратит коллекцию из элементов с таким тегом
+    let elemByName = document.getElementsByTagName('h1');
+    //console.log(elemByName);
+    /************************************************************************************************/
+    //поиск по селетору, можно дописывать псевдоклассы. Вернёт первый попавшийся объект с таким классом, id, названием тега
+    elem = document.querySelector(".test-class:nth-child(3)");
+    //console.log(elem);
+    //если надо вернуть все обекты такимми тегами(классами, id), то променяется следующее:
+    elem = document.querySelectorAll("p");
+    //console.log(elem);
+    //можно обратиться также как элементу массива
+    elem = document.querySelectorAll("p")[1];
+    //console.log(elem);
+    //можно обработать их в цикле for
+    elem = document.querySelectorAll("p");
+    for(const temp of elem){
+        console.log(temp);
+    }
+    /******************************************************************************************************/
+    //Получение доступа к содежимому HTML элемента
+    let pTag = document.querySelector("p");
+    console.dir(pTag.textContent);//выводим текстовое содержимое без тегов HTML
+    pTag.textContent += "!!!"; //добавляем к текстовому содержимому тега !!!
+    console.dir(pTag.innerHTML);
+    //свойство innerHTML позволяет добавлять содержимое к элементы, включая теги HTML
+    pTag.innerHTML += "<span>Hello!!!</span>";
+
+
+    /****************************************************************************************************/
+    //функции задержки скрипта
+    //setTimeout(function(), interval) - задерживает выполнение function() на время в interval в мс
+    //setInterval() - аналогична setTimeOut(), но повторяет выполнение function() через промежуток времени в interval
+    setTimeout(() => pTag.textContent += "!", 1000);//добавит "!" один раз через 1 секунду
+    setInterval(() => pTag.textContent += "!", 2000);//будет добавлять ! каждые 2 секунды
+    /**********************************************************************************************************/
+    //доступ к стилям
+    pTag.style.color = "blue";  //меняем CSS стиль элемента color
+    document.querySelector("h1").style.backgroundColor = "red";//меняем цвет первого загаловка h1 на красный
+
+    /*********************************************************************************************************/
+    //создание нового элемента
+    const myDiv = document.createElement('div');//создает новый div
+    myDiv.textContent = 'Какой то текст!!!';//добавляем текст к div
+    document.body.appendChild(myDiv);//добавляет myDiv в конец тега body P.S.доступ к body возможен без querySelector
+    //если мы возьмём уже существующий элемент и добавим его в блок с помощью appendChild, то он удалится с предыдущего
+    //места и вставится в конец
+    let h1Tag = document.querySelector("h1").cloneNode(true);
+    document.body.appendChild(h1Tag);//удалится из начального положения и вставится в конец body
+    //*************************************************************************************************************/
+    //Чтобы вставить элемент в определённое место есть метод insertBefore
+    let parentElement = document.getElementById('test-id');//находим родительский элемент
+    let refElement = document.querySelector('.test-class:last-child');//находим элемент перед которым решили вставить
+    parentElement.insertBefore(h1Tag, refElement);//вставляем
+    //если мы хотим не удалять оригнал, а сделать копию элемента, то применяем cloneNode(true)
+    //let h1Tag = document.querySelector("h1").cloneNode(true);
+    /*****************************************************************************************************************/
+    //Для удаления элемента применяется метод remove
+    document.querySelector('h1').remove();
+    /****************************************************************************************************************/
+    //Обработка событий
+    //на разные события можно повесить обработчики, например на клик мыши
+    h1Tag = document.querySelector('h1');
+    // h1Tag.onclick = function () {//вешаем функцию на обработчик, её можно описать отдельно
+    //     h1Tag.style.backgroundColor = "#233fbb";
+    // };
+    //h1Tag.onclick = null; - сбрасывает обработчик
+    //Но лучше пользоваться так - добавлять слушателя событий
+    const foo = function(event){
+        event.target.style.backgroundColor = "#233fbb";
+        console.log(event);
+    }
+    const fooTwo = function(event){
+        event.target.style.backgroundColor = "red";
+    }
+    //event (тут может быть любое название) - сюда передается событие, в данном случае 'click'
+    //через него мы можем получить много информации, в частности свойство target - это элемент
+    //по которому произошел клик. То есть через event.target мы получаем доступ к h1Tag
+    h1Tag.addEventListener('click', foo);
+    h1Tag.addEventListener('dblclick', fooTwo);
+    /***************************************************************************************************************/
+    /************************************* Работа с атрибутами DOM ************************************************/
+    /**************************************************************************************************************/
+    let button = document.querySelector('.btn1');
+    button.setAttribute('data-some', 'isNewData');
+    //setAttribute добавляет новый атрибут к элементу. первый аргумент - название атрибута, второй - его содержимое
+    //чтобы получить атрибут, то надо использовать getAttribute('atribute');
+    console.log(button.getAttribute('data-info'));
+    //для удаления есть метод removeAttribute('attribute');
+    button.removeAttribute('data-info');
+    //доступ к классам элемента можно получить через свойство classList
+    console.log(button.classList);
+    //можно добавлять классы
+    button.classList.add('itsANewClass');//добавляем itsANewClass
+    button.classList.add('itsANewClassToo');
+    console.log(button.classList);
+    button.classList.remove('itsANewClass');//удаляем itsANewClass
+    console.log(button.classList);
+    //toggle('className') - если className нет, то он его добавит, если есть, то удалит
+    button.classList.toggle('itsANewClassToo');
+    console.log(button.classList);
+    //contains проверяет существует ли класс, возвращает true или false
+    console.log(button.classList.contains('btn1'));
+
+    //для работы с data-атрибутами есть такой же метод dataset
+    console.log(button.dataset);
+    //если знаем название атрибута, то можем получить доступ только к нему
+    console.log(button.dataset.some);
+    delete button.dataset.some; //удаляет выбранный атрибут
+    //добавления нового data-атрибута
+    button.dataset.new = 'veryNewData';
+    console.log(button.dataset);
+    //изменяем свойство также
+    button.dataset.new = 'veryVeryNewData';
+
+</script>
+
+</body>
+</html>

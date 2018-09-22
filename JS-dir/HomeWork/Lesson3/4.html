@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+
+    /**Функция определяет являетсяся ли переданное число простым
+     * вщзвращает true, если число простое, и false в противном случае
+     * @param digit - число для определения простоты
+     * @returns {boolean}
+     * @constructor
+     */
+    function IsSimple(digit) {
+        if(digit === 0 || digit === 1 || digit%2 === 0){
+            return false;
+        }
+        for(let i = 2; i <= Math.floor(digit/2); i++){
+            if(digit%i === 0)
+                return false;
+        }
+        return true;
+    }
+    for(let i = 0; i <= 150; i++){
+        if(IsSimple(i)){
+            console.log(i);
+        }
+    }
+    // }
+</script>

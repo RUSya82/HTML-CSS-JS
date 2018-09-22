@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <div class="item">
+            <img src="img/mouse.jpg" alt="mouse" width="200">
+            Цена 250 рублей
+            <button class="buyButton" data-price="250" data-name="мышь">Купить</button>
+        </div>
+        <div class="item">
+            <img src="img/monitor.jpg" alt="monitor" width="200">
+            Цена 8754 рубля
+            <button class="buyButton" data-price="8754" data-name="монитор">Купить</button>
+        </div>
+        <div class="item">
+            <img src="img/keyboard.jpg" alt="keyboard" width="200">
+            Цена 850 рублей
+            <button class="buyButton" data-price="850" data-name="клавиатура">Купить</button>
+        </div>
+    </div>
+    <div id="cart">
+        Количество товаров: <span id="cartCount">0</span>
+        Сумма покупки: <span id="cartPrice">0</span>
+    </div>
+    <div>
+        <button id="cleanCart">Очистить корзину</button>
+    </div>
+    <script src="cart.js"></script>
+</body>
+</html>

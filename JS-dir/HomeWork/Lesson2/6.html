@@ -1,0 +1,31 @@
+<meta charset="UTF-8">
+<script>
+    /**
+     * rur(sum) возвращает слово рубль с правильным окончанием в зависимости от суммы
+     * @sum - сумма в рублях*/
+    function rur(sum) {
+        if(sum%100 > 10 && sum%100 < 15){
+            return 'рублей';
+        }
+        let tail = sum%10;
+        if(tail == 1){
+            return 'рубль';
+        }
+        else if(tail == 2 || tail == 3 || tail == 4){
+            return 'рубля';
+        }
+        else {
+            return 'рублей';
+        }
+    }
+    // alert(30 + rur(30));
+    // alert(11 + rur(11));
+    // alert(14 + rur(14));
+    // alert(1 + rur(1));
+    // alert(56201 + rur(56201));
+    // alert(864 + rur(864));
+    // alert(53 + rur(53));
+    // alert(6532 + rur(6532));
+    let x = prompt("Введите сумму");
+    alert("Ваша сумма " + x + " " + rur(x) + " успешно зачислена!");
+</script>

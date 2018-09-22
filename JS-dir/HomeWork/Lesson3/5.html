@@ -1,0 +1,32 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+    const arr = [
+        [2, 4, 6],
+        [1, 5, 10],
+        [7, 4, 1],
+        [2, 4, 6],
+        [1, 555, -382],
+        [7, 4, 1],
+        [200, 14, -6],
+        [1, 5, 110],
+        [7, 4, 1],
+        [2, 44, 6],
+        [113, 50, 10],
+        [7, 4, 1],
+    ];
+    const arr1 = arr.slice();
+    let maxSumm = null, maxI = 0;
+    for(let i = 0; i < arr1.length; i++){
+        let summ = 0;
+        for(let elem of arr1[i]){
+            summ += elem;
+        }
+        if(summ > maxSumm){
+            maxSumm = summ;
+            maxI = i;
+        }
+    }
+    console.log("Индекс массива с максимальной суммой элементов:" + maxI);
+    console.log("Минимальный эдемент в этом массиве = " + Math.min.apply(null, arr1[maxI]));
+</script>

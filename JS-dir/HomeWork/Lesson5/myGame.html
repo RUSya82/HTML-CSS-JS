@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            margin: auto;
+            border-collapse: collapse;
+        }
+        tr {
+            width: 50px;
+            height: 50px;
+        }
+        td {
+            border: 1px solid #888888;
+            width: 50px;
+            height: 50px;
+            background-color: #EEEEEE;
+            text-align: center;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        td:hover{
+            border-color: #d81c96;
+        }
+    </style>
+</head>
+<body>
+    <table id="game"></table>
+    <script>
+
+        const chess = {
+            gameContainerEl: document.getElementById('game'),
+            figures: [
+                {
+                    name: 'castle',
+                    color: 'white',
+                    code: '&#9814;',
+                    posX: 1,
+                    posY: 1,
+                },
+                {
+                    name: 'castle',//ладья
+                    color: 'white',
+                    code: '&#9814;',
+                    posX: 8,
+                    posY: 1,
+                },
+                {
+                    name: 'bishop',//слон
+                    color: 'white',
+                    code: '&#9815;',
+                    posX: 3,
+                    posY: 1,
+                },
+                {
+                    name: 'bishop',//слон
+                    color: 'white',
+                    code: '&#9815;',
+                    posX: 6,
+                    posY: 1,
+                },
+                {
+                    name: 'knight',//конь
+                    color: 'white',
+                    code: '&#9816;',
+                    posX: 7,
+                    posY: 1,
+                },
+                {
+                    name: 'knight',//конь
+                    color: 'white',
+                    code: '&#9816;',
+                    posX: 2,
+                    posY: 1,
+                },
+                {
+                    name: 'king',//король
+                    color: 'white',
+                    code: '&#9812;',
+                    posX: 4,
+                    posY: 1,
+                },
+                {
+                    name: 'queen',//ферзь
+                    color: 'white',
+                    code: '&#9813;',
+                    posX: 5,
+                    posY: 1,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'white',
+                    code: '&#9817;',
+                    posX: 1,
+                    posY: 2,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'white',
+                    code: '&#9817;',
+                    posX: 2,
+                    posY: 2,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'white',
+                    code: '&#9817;',
+                    posX: 3,
+                    posY: 2,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'white',
+                    code: '&#9817;',
+                    posX: 4,
+                    posY: 2,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'white',
+                    code: '&#9817;',
+                    posX: 5,
+                    posY: 2,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'white',
+                    code: '&#9817;',
+                    posX: 6,
+                    posY: 2,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'white',
+                    code: '&#9817;',
+                    posX: 7,
+                    posY: 2,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'white',
+                    code: '&#9817;',
+                    posX: 8,
+                    posY: 2,
+                },
+                {
+                    name: 'castle',
+                    color: 'black',
+                    code: '&#9820;',
+                    posX: 8,
+                    posY: 8,
+                },
+                {
+                    name: 'castle',
+                    color: 'black',
+                    code: '&#9820;',
+                    posX: 1,
+                    posY: 8,
+                },
+                {
+                    name: 'bishop',//слон
+                    color: 'black',
+                    code: '&#9821;',
+                    posX: 3,
+                    posY: 8,
+                },
+                {
+                    name: 'bishop',//слон
+                    color: 'black',
+                    code: '&#9821;',
+                    posX: 6,
+                    posY: 8,
+                },
+                {
+                    name: 'knight',//конь
+                    color: 'black',
+                    code: '&#9822;',
+                    posX: 7,
+                    posY: 8,
+                },
+                {
+                    name: 'knight',//конь
+                    color: 'black',
+                    code: '&#9822;',
+                    posX: 2,
+                    posY: 8,
+                },
+                {
+                    name: 'king',//король
+                    color: 'black',
+                    code: '&#9818;',
+                    posX: 4,
+                    posY: 8,
+                },
+                {
+                    name: 'queen',//ферзь
+                    color: 'black',
+                    code: '&#9819;',
+                    posX: 5,
+                    posY: 8,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'black',
+                    code: '&#9823;',
+                    posX: 1,
+                    posY: 7,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'black',
+                    code: '&#9823;',
+                    posX: 2,
+                    posY: 7,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'black',
+                    code: '&#9823;',
+                    posX: 3,
+                    posY: 7,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'black',
+                    code: '&#9823;',
+                    posX: 4,
+                    posY: 7,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'black',
+                    code: '&#9823;',
+                    posX: 5,
+                    posY: 7,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'black',
+                    code: '&#9823;',
+                    posX: 6,
+                    posY: 7,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'black',
+                    code: '&#9823;',
+                    posX: 7,
+                    posY: 7,
+                },
+                {
+                    name: 'pawn',//пешка
+                    color: 'black',
+                    code: '&#9823;',
+                    posX: 8,
+                    posY: 7,
+                },
+            ],
+            render: function () {
+                // Названия колонок
+                const cols = [0, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 0];
+                const rows = [0, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+
+                // Цикл для строк
+                for (let row = 0; row < 10; row++) {
+                    // Создаем и добавляем строку.
+                    const tr = document.createElement('tr');
+                    this.gameContainerEl.appendChild(tr);
+
+                    // Добавляем ячейки в строку.
+                    for (let col = 0; col < 10; col++) {
+                        // Создаем и добавляем ячейку.
+                        const td = document.createElement('td');
+                        td.dataset.posX = col;
+                        td.dataset.posY = row;
+                        tr.appendChild(td);
+
+                        // Если строка нулевая (первая по счету), значит выводим буквы в ней.
+                        // Нули из массива с названиями колонок не выводим, они нам не нужны.
+                        if ((row === 0 && cols[col] !== 0) || (row === 9 && cols[col] !== 0)) {
+                            td.innerHTML = cols[col];
+                        }
+                        //То же самое и цифрами в крайних столбцах
+                        if ((col === 0 && rows[row] !== 0) || (col === 9 && rows[row] !== 0)) {
+                            td.innerHTML = rows[row];
+                        }
+
+                        // Проверяем, надо ли покрасить ячейку, передаем строку и колонку.
+                        if (this.isCellIsBlack(row, col)) {
+                            td.style.backgroundColor = 'grey';
+                        }
+                    }
+                }
+            },
+
+            // Метод определяет нужно ли покрасить ячейку.
+            // Просто для примера покрасим ячейки, строки которых делятся на 2 с остатком.
+            isCellIsBlack(rowNum, colNum) {
+                // Если это края таблицы, то ничего не красим
+                if(rowNum === 9 || colNum === 9 || rowNum === 0 || colNum === 0){
+                    return false;
+                }
+                //если строка четная, а столбец нечетный, то красим
+                if(!(rowNum % 2) && colNum % 2){
+                    return true;
+                }
+                //и наоборот
+                if(!(colNum % 2) && rowNum % 2){
+                    return true;
+                }
+                return false;
+            },
+            /**
+             * Функция поиска ячейки с заданным номером
+             * @param posX позиция X ячейки
+             * @param posY позиция Y ячейки
+             * @returns {*} возвращает либо объект ячейки, либо null
+             */
+            seekCell(posX, posY) {
+                let elem = document.querySelectorAll('td');
+                for(let item of elem){
+                    if(+item.dataset.posX === posX && +item.dataset.posY === posY) {
+                        return item;
+                    }
+                }
+                return null;
+            },
+            /**
+             *
+             */
+            renderFigures(){
+                function seekCell(posX, posY) {
+                    let elem = document.querySelectorAll('td');
+                    for(let item of elem){
+                        if(+item.dataset.posX === posX && +item.dataset.posY === posY) {
+                            return item;
+                        }
+                    }
+                    return null;
+                }
+
+                for(let figure of this.figures){
+                    let cell = seekCell(figure.posX, figure.posY);
+                    if(cell){
+                        cell.innerHTML += figure.code;
+                    }
+                }
+            },
+
+        };
+
+        // Запускаем метод render.
+        chess.render();
+        chess.renderFigures();
+    </script>
+</body>
+</html>

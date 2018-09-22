@@ -1,0 +1,23 @@
+<meta charset="UTF-8">
+<script>
+    let summ1 = 0, summ2 = 0;
+    let number = parseInt(prompt("Введите номер билета"));
+    let n = 3;
+    while(n !== 0){
+        summ1 += number%10;
+        number = parseInt(number/10);
+        n--;
+    }
+    n = 3;
+    while(n !== 0){
+        summ2 += number%10;
+        number = parseInt(number/10);
+        n--;
+    }
+    if(summ1 === summ2){
+        alert("Ваш билет счастливый!");
+    }
+    else
+        alert("Повезёт в следующий раз");
+    alert("Hello, I'm PHP - Storm");
+</script>

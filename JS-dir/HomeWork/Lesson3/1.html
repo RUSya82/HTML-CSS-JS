@@ -1,0 +1,16 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+    let i = 0;
+
+    do{
+        let str = "- это нечетное число";
+        if(i === 0){
+            str = "- это ноль";
+        }else if(i%2 === 0){
+            str = "- это четное число";
+        }
+        console.log(i++ + str);
+    }while(i <= 10);
+
+</script>

@@ -1,0 +1,30 @@
+<meta charset="UTF-8">
+<script>
+    /**
+     * Функция возвращает объект с цифрами данного числа
+     * @param number число для расчленения от 0 до 999
+     * @returns {*} возвращает объект
+     */
+    function getDigitsOfNumber(number) {
+        let temp = number;
+        let DigitsOfNumber = {
+            firstDigit: 0,
+            secondDigit: 0,
+            thirdDigit: 0,
+        };
+        if(!Number.isInteger(number) || number > 999 || number < 0){
+            alert("Число должно быть в диапазоне от 0 до 999!");
+            return {};
+        }
+        DigitsOfNumber.firstDigit = temp%10;
+        temp = parseInt(temp/10);
+        DigitsOfNumber.secondDigit = temp%10;
+        temp = parseInt(temp/10);
+        DigitsOfNumber.thirdDigit = temp%10;
+        temp = parseInt(temp/10);
+        return DigitsOfNumber;
+    }
+    let number = prompt("Введите число");
+    let a = getDigitsOfNumber(+number);
+    console.log(a);
+</script>

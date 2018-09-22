@@ -1,0 +1,14 @@
+<meta charset="UTF-8">
+<script>
+    "use strict";
+    let str = 'x';
+    for(let i = 0; i < 20; i++){
+        console.log(str);
+        str += 'xx';
+    }
+    //можно тнаписать так, как ниже, но мне кажется первый вариант наиболее читаельный и правильный
+    //т.к. всё на местах - счетчик описан в for, а действия в теле цикла
+    // for(let i = 0, str = 'x'; i < 20; console.log(str), str += 'xx', i++){
+    //
+    // }
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Галерея</title>
+</head>
+<body>
+  <div id="galleryContainer">
+  </div>
+  <script>
+      window.onload = () => {
+          let xhr = new XMLHttpRequest();
+          xhr.open('GET', 'gall.json', true);
+          xhr.onreadystatechange = () => {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                  let query = JSON.parse(xhr.responseText);
+                  console.log(query);
+                  let innerBlock = document.getElementById('galleryContainer');
+                  let innerCode = "";
+                  for(let index in query){
+                      innerCode += `<a href="${query[index].srcMax}" target="_blank"><img src="${query[index].src}"
+                            alt="${query[index].alt}"></a>`;
+                  }
+                  innerBlock.innerHTML = innerCode;
+              }
+
+          }
+          xhr.send();
+      }
+  </script>
+</body>
+</html>

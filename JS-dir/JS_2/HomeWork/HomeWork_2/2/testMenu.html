@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="menu"></div>
+    <button id="remove_button">Удалить</button>
+<script src="Menu.js"></script>
+<script src="Menuitem.js"></script>
+<script>
+    window.onload = createMenu();
+        function createMenu(){
+        // DOM ready
+        let menuBlock = document.getElementById('menu');
+
+        let menu = new Menu('navigation', 'navigation', [
+            new MenuItem('/', 'Home', 'main-submenu'),
+            new subMenu('/man', 'Man' , 'navigation__man', 'main-submenu', 'level_1',[
+                new MenuItem('/shirts', 'Shirts',  'menu-item'),
+                new MenuItem('/trousers', 'trousers', 'menu-item'),
+                new MenuItem('/suits', 'suits', 'menu-item'),
+                new MenuItem('/ties', 'ties', 'menu-item'),
+            ]),
+            new subMenu('/women', 'women' , 'navigation__women', 'main-submenu', 'level_1', [
+                new MenuItem('/blouses', 'blouses','menu-item'),
+                new MenuItem('/trousers', 'trousers','menu-item'),
+                new subMenu('/dresses', 'dresses' , 'navigation__women', 'menu-item', 'level_2', [
+                    new MenuItem('/dressesOffice', 'Office','menu-item'),
+                    new MenuItem('/dressesOCoctail', 'Coctail','menu-item'),
+                ]),
+                new MenuItem('/ties', 'ties','menu-item'),
+            ]),
+            new subMenu('/kids', 'kids' , 'navigation__kids', 'main-submenu', 'level_1',[
+                new MenuItem('/caps', 'caps', 'menu-item'),
+                new MenuItem('/pajamas', 'pajamas','menu-item'),
+                new MenuItem('/shirts', 'shirts','menu-item'),
+            ]),
+            new MenuItem('/contacts', 'Contacts','main-submenu'),
+            new MenuItem('/blog', 'Blog','main-submenu'),
+            new MenuItem('/policy', 'Policy','main-submenu')
+        ]);
+
+        menuBlock.innerHTML = menu.render();
+    }
+    document.getElementById('remove_button').addEventListener('click', () => menu.remove('menu'));
+</script>
+</body>
+</html>

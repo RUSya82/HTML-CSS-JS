@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+<style>
+
+</style>
+<form action="#" id="myForm" method="get">
+    <p>Введите контактную информацию</p>
+    <fieldset>
+        <legend>Контактная информация</legend>
+        <label for="name">Имя
+            <em>*</em>
+        </label>
+        <input type="text" id="name" placeholder="Иван" autofocus form="myForm">
+        <br>
+        <label for="phone">Телефон
+            <em>*</em>
+        </label>
+        <input id="phone" placeholder="+79121231212">
+        <br>
+        <label for="email">E-mail
+            <em>*</em>
+        </label>
+        <input id="email" placeholder="mymail@mail.ru">
+        <br>
+        <label for="comment">Комментарий</label>
+        <textarea name="comment" id="comment" ></textarea>
+    </fieldset>
+    <input type="submit" value="Зарегистрироваться" id="btn_sbm">
+</form>
+<script src="js.js"></script>
+    <script>
+        /**
+         * массив объектов с ID проверяемых элементов и их регулярными выражениямми
+         * @type {*[]}
+         */
+        let elements = [
+            {
+                elemID: "name",
+                elemReg: /^[А-Яа-яA-Za-z\-]{1,20}$/i
+            },
+            {
+                elemID: "phone",
+                elemReg: /^\+7\(?\d{3}\)?\d{3}\-?\d{4}$/i
+            },
+            {
+                elemID: "email",
+                elemReg: /^[a-z0-9]+[\.?|\-?]?[a-z0-9]*\@[A-Za-z]{1,8}\.[a-z]{2,6}/i
+            },
+
+        ];
+
+        document.getElementById('myForm').addEventListener('submit', event => {
+            this.event.preventDefault();
+            let checking = new MyForm('myForm', event, elements);
+            checking._checkForm();//console.log('color colour colotr'.match(/colo[ut]?r/g));
+        });
+    </script>
+
+</body>
+</html>

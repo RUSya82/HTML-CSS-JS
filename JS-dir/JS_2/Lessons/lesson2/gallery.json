@@ -1,0 +1,10 @@
+{
+  "img1": {
+    "alt": "Some alt",
+    "src": "img/some.jpg"
+  },
+  "img2": {
+    "alt": "Some alt",
+    "src": "img/some.jpg"
+  }
+}

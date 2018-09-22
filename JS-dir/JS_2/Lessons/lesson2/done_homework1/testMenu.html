@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="menu"></div>
+    <button id="remove-btn">Remove menu</button>
+<script src="Menu.js"></script>
+<script src="Menuitem.js"></script>
+<script>
+    window.onload = function(){
+        // DOM ready
+        let menuBlock = document.getElementById('menu');
+        let btn = document.getElementById('remove-btn');
+        let menu = new Menu('my', 'my', [
+            new MenuItem('/', 'Home'),
+            new MenuItem('/about', 'About'),
+            new MenuItem('/contacts', 'Contacts'),
+            new MenuItem('/blog', 'Blog'),
+            new MenuItem('/policy', 'Policy'),
+            new SubMenu('/', ' title', 'me', 'me', [
+                new MenuItem('/about', 'About'),
+                new MenuItem('/contacts', 'Contacts'),
+                new SubMenu('/', ' title', 'me', 'me', [
+                    new MenuItem('/about', 'About'),
+                    new MenuItem('/contacts', 'Contacts'),
+                    new MenuItem('/blog', 'Blog')
+                ]),
+                new MenuItem('/blog', 'Blog')
+            ])
+        ]);
+
+        menuBlock.innerHTML = menu.render();
+        btn.addEventListener('click', () => menu.remove());
+    }
+</script>
+</body>
+</html>

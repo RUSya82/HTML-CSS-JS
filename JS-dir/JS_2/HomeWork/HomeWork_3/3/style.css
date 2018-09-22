@@ -1,0 +1,29 @@
+em{
+    color: red;
+}
+form{
+    width: 600px;
+    margin: 0 auto;
+}
+form label {
+    width: 150px;
+    display: inline-block;
+    margin: 6px;
+    text-align: justify;
+}
+form input, textarea {
+    width: 249px;
+}
+form input:required {
+    background-color: lightyellow;
+}
+#btn_sbm{
+    width: 150px;
+    height: 50px;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 30px 230px;
+}
+/*#name{*/
+    /*border: 1px solid red;*/
+/*}*/

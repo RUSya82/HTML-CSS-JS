@@ -1,0 +1,22 @@
+{
+  "corolla": {
+    "value": "corolla",
+    "text": "corolla"
+  },
+  "camry": {
+    "value": "camry",
+    "text": "camry"
+  },
+  "Land Cruiser": {
+    "value": "Land Cruiser",
+    "text": "Land Cruiser"
+  },
+  "avensis": {
+    "value": "avensis",
+    "text": "avensis"
+  },
+  "tundra": {
+    "value": "tundra",
+    "text": "tundra"
+  }
+}

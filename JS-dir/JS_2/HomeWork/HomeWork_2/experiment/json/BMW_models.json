@@ -1,0 +1,30 @@
+{
+  "5 series": {
+    "value": "5 series",
+    "text": "5 series"
+  },
+  "3 series": {
+    "value": "3 series",
+    "text": "3 series"
+  },
+  "X5": {
+    "value": "X5",
+    "text": "X5"
+  },
+  "X3": {
+    "value": "X3",
+    "text": "X3"
+  },
+  "X1": {
+    "value": "X1",
+    "text": "X1"
+  },
+  "M5": {
+    "value": "M5",
+    "text": "M5"
+  },
+  "M3": {
+    "value": "M3",
+    "text": "M3"
+  }
+}

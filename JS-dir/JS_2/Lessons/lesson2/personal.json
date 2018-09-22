@@ -1,0 +1,12 @@
+{
+  "1": {
+    "name": "Sam",
+    "phone": "+79124181552",
+    "job": "fullstack developer"
+  },
+  "2": {
+    "name": "John",
+    "phone": "+79129073629",
+    "job": "frontend developer"
+  }
+}

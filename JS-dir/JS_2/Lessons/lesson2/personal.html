@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="data"></div>
+    <button id="getPersonal">Get personal</button>
+    <script>
+        window.onload = () => {
+            document.getElementById('getPersonal').addEventListener('click', () => getPersonal());
+            console.log(document.getElementById('getPersonal'));
+        }
+        function getPersonal() {
+            //console.log("getPersonal");
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', 'personal.json', true);
+
+            xhr.onreadystatechange = () => {
+                //console.log(xhr.readyState);
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let query = JSON.parse(xhr.responseText);
+                    console.log(query);
+                    let innerBlock = document.getElementById('data');
+                    let innerCode = "";
+                    // Array.prototype.forEach.call(query, () => {
+                    //     innerCode += "Name: " + query.name + '<br>';
+                    //     innerCode += "Phone: " + query.phone + '<br>';
+                    //     innerCode += "Job: " + query.job + '<br>';
+                    // });
+                    for(let index in query){
+                        innerCode += "Name: " + query[index].name + '<br>';
+                        innerCode += "Phone: " + query[index].phone + '<br>';
+                        innerCode += "Job: " + query[index].job + '<br>';
+                    }
+                    innerBlock.innerHTML = innerCode;
+                }
+
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

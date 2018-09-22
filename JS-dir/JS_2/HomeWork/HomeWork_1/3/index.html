@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="#">
+    <input class="size" type="radio" id="big" value="big" name="size" checked onchange="init()">
+    <label for="big">Big burger</label>
+    <input class="size" type="radio" id="small" value="small" name="size" onchange="init()">
+    <label for="small">Small burger</label>
+    <br>
+    <input class="stuffing" type="radio" id="potato" value="potato" name="stuffing" checked onchange="init()">
+    <label for="potato">With potato</label>
+    <input class="stuffing" type="radio" id="cheese" value="cheese" name="stuffing" onchange="init()">
+    <label for="cheese">With cheese</label>
+    <input class="stuffing" type="radio" id="salad" value="salad" name="stuffing" onchange="init()">
+    <label for="salad">With salad</label>
+    <br>
+    <input class="topping" type="checkbox" id="mayo" value="mayo" name="topping" onchange="init()">
+    <label for="mayo">With Mayonese</label>
+    <input class="topping" type="checkbox" id="spice" value="spice" name="topping" onchange="init()">
+    <label for="spice">With spice</label>
+    <br>
+    Цена бургера: <span id="spanPrice"></span>
+    <br>
+    калорийность: <span id="spanCalories"></span>
+    <br>
+    <input type="button" value="Спросить" onclick="init()">
+</form>
+<script src="Hamburger.js"></script>
+<script src="Param.js"></script>
+<script>
+    window.onload = init();
+    function init() {
+
+        let size = getItemSize(document.getElementsByName('size'));
+        let stuffing = getItemStuff(document.getElementsByName('stuffing'));
+        let topping = getItemTopping(document.getElementsByName('topping'));
+        let Order = new Hamburger(size.value, stuffing.value);
+        for(let param of topping){
+            Order.setTopping(param.value);
+        }
+        //console.log(Order);
+        render(Order);
+    }
+    function getItemSize(elements) {
+        for(let param of elements){
+            if(param.checked){
+                return param;
+            }
+        }
+        return false;
+    }
+    function getItemStuff(elements) {
+        for(let param of elements){
+            if(param.checked){
+                return param;
+            }
+        }
+        return false;
+    }
+    function getItemTopping(elements) {
+        let a = [];
+        for(let param of elements){
+            if(param.checked){
+                a.push(param);
+            }
+        }
+        return a;
+    }
+    function render(hamb) {
+        document.getElementById('spanPrice').innerText = hamb.getAllPrice();
+        document.getElementById('spanCalories').innerText = hamb.getAllCalories();
+    }
+    // function update(event) {
+    //     if(event.name === 'size'){
+    //         Order.setSize(event.value);
+    //     }
+    // }
+    // let a = new Hamburger('big', 'cheese');
+    // console.log(a.getAllPrice());
+    // console.log(a.getAllCalories());
+    // a.setTopping('mayo');
+    // a.setTopping('spice');
+    // a.setStuffing('salad');
+    // console.log(a.getAllPrice());
+    // console.log(a.getAllCalories());
+    // a.setTopping('spice');
+    // console.log(a.getAllPrice());
+    // console.log(a.getAllCalories());
+    // a.setStuffing('potato');
+    // a.setSize('small');
+    // console.log(a.getAllPrice());
+    // console.log(a.getAllCalories());
+</script>
+</body>
+</html>
